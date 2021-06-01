@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AuthManual</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if user_logged_in? %>
+      <p>Bienvenido <%= current_user.email %> </p>
+      <%= link_to "Cerrar Sesión", session_path(current_user.id), method: :delete %>
+    <% else  %>
+      <%= link_to "Iniciar Sesión", new_session_path %>
+      <%= link_to "Registrarse", users_new_path %>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
